@@ -16,7 +16,7 @@ Spam emails pose serious risks including phishing, malware distribution, financi
 The system integrates multiple AI models:
 
 ### Text Analysis
-- **BERT (Bidirectional Encoder Representations from Transformers)** – Primary model for email text classification.
+- **DistilBERT (Distil Bidirectional Encoder Representations from Transformers)** – Primary model for email text classification.
 - **Traditional ML Model (Backup)**:
   - TfidfVectorizer
   - SGDClassifier
@@ -30,12 +30,12 @@ The system integrates multiple AI models:
 ## 6. Methodology (Step-by-Step)
 1. User uploads an email (text or image).
 2. If input is text:
-   - Text is analyzed using BERT.
+   - Text is analyzed using DistilBERT.
    - If confidence < 0.9, the ML backup model participates in voting.
 3. If input is an image:
    - Image is classified using EfficientNet-B3.
    - OCR extracts text from the image.
-   - Extracted text is analyzed using BERT.
+   - Extracted text is analyzed using DistilBERT.
 4. Decision Engine combines results:
    - Spam + Spam → **Spam**
    - Spam + Ham → **Suspicious**
@@ -60,7 +60,7 @@ The system integrates multiple AI models:
 
 ## 8. Model Training Procedure
 ### Text Models
-- BERT fine-tuned using labeled email text data.
+- DistilBERT fine-tuned using labeled email text data.
 - SGDClassifier trained using TF-IDF features.
 
 ### Image Model
@@ -68,7 +68,7 @@ The system integrates multiple AI models:
 - Cross-entropy loss and Adam optimizer used.
 
 ## 9. Explanation of the Main Code Components
-- **text_inference.py**: Handles BERT and ML-based text classification.
+- **text_inference.py**: Handles DistilBERT and ML-based text classification.
 - **image_inference.py**: Loads EfficientNet-B3 and performs image inference.
 - **ocr_pipeline.py**: Extracts text from images using Tesseract OCR.
 - **decision_engine.py**: Implements fusion logic and behavioral analysis.
@@ -97,7 +97,7 @@ This model provides fast inference and high accuracy, making it suitable for rea
 
 ---
 
-**Model 2: Transformer-based Model (DistilBERT – `distilbert-base-uncased`)**
+**Model 2: Transformer-based Model (DistilBERT – `distilBERT-base-uncased`)**
 
 **Evaluation Results:**
 - Accuracy: **0.9936**
@@ -150,7 +150,7 @@ This project demonstrates the effectiveness of multi-modal spam detection using 
 
 - The image-based spam detection performance is lower compared to text-based models.
 - OCR-extracted text differs significantly from formal email text.
-- NLP models (BERT & ML) were trained primarily on structured email datasets, not noisy OCR-generated text.
+- NLP models (DistilBERT & ML) were trained primarily on structured email datasets, not noisy OCR-generated text.
 - The image spam dataset used was relatively small and lacked diversity, affecting generalization.
 - OCR errors can propagate into the text classification stage.
 
