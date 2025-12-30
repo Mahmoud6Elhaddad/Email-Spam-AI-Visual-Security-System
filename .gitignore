@@ -1,0 +1,8 @@
+__pycache__/
+*.exe
+.env
+.vscode/
+assert/
+OCR/__pycache__/
+cv/__pycache__/
+text/__pycache__/
